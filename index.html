@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>repo · name generator</title>
+  <title>repo · name</title>
   <style>
     * {
       margin: 0;
@@ -13,167 +13,156 @@
 
     body {
       background: #0a0a0a;
-      color: #e0e0e0;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #e8e8e8;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 24px;
+      font-weight: 400;
+      line-height: 1.5;
     }
 
     .container {
-      max-width: 640px;
+      max-width: 720px;
       width: 100%;
-      background: #141414;
-      padding: 40px 32px;
-      border-radius: 24px;
-      border: 1px solid #2a2a2a;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
     }
 
-    h1 {
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: -0.5px;
+    .header {
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #555;
       margin-bottom: 4px;
     }
 
-    .sub {
-      color: #888;
-      font-size: 14px;
-      margin-bottom: 28px;
-      border-bottom: 1px solid #222;
-      padding-bottom: 16px;
+    .header .sub {
+      font-size: 15px;
+      color: #444;
+      font-weight: 400;
     }
 
     .input-group {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #1e1e1e;
+      padding-bottom: 28px;
     }
 
     .input-group input {
       flex: 1;
-      padding: 12px 16px;
-      background: #1e1e1e;
-      border: 1px solid #333;
-      border-radius: 12px;
-      color: #f0f0f0;
-      font-size: 15px;
+      padding: 10px 0;
+      background: transparent;
+      border: none;
+      color: #e8e8e8;
+      font-size: 18px;
+      font-weight: 400;
       outline: none;
-      transition: border 0.2s;
-      min-width: 160px;
-    }
-
-    .input-group input:focus {
-      border-color: #666;
+      letter-spacing: -0.2px;
+      font-family: inherit;
     }
 
     .input-group input::placeholder {
-      color: #555;
+      color: #333;
+      font-weight: 300;
+    }
+
+    .input-group input:focus {
+      border-bottom: 1px solid #555;
+      margin-bottom: -1px;
     }
 
     .btn {
-      padding: 12px 24px;
-      background: #2a2a2a;
+      padding: 8px 20px;
+      background: transparent;
       border: 1px solid #444;
-      border-radius: 12px;
-      color: #eee;
-      font-size: 15px;
-      font-weight: 500;
+      border-radius: 0;
+      color: #e8e8e8;
+      font-size: 13px;
+      font-weight: 450;
       cursor: pointer;
       transition: all 0.2s;
-      white-space: nowrap;
+      letter-spacing: 0.3px;
+      font-family: inherit;
     }
 
     .btn:hover {
-      background: #333;
-      border-color: #666;
-    }
-
-    .btn-primary {
-      background: #c0c0c0;
+      background: #e8e8e8;
       color: #0a0a0a;
-      border-color: #c0c0c0;
-    }
-
-    .btn-primary:hover {
-      background: #e0e0e0;
-      border-color: #e0e0e0;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border-color: #333;
-    }
-
-    .btn-secondary:hover {
-      background: #1e1e1e;
+      border-color: #e8e8e8;
     }
 
     .mode-row {
       display: flex;
-      gap: 8px;
+      gap: 4px;
+      margin-bottom: 32px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
     }
 
     .mode-chip {
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      background: #1a1a1a;
-      border: 1px solid #2a2a2a;
-      color: #888;
+      padding: 4px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #444;
       cursor: pointer;
       transition: all 0.15s;
+      border: none;
+      background: transparent;
+      font-family: inherit;
     }
 
     .mode-chip.active {
-      background: #2a2a2a;
-      color: #eee;
-      border-color: #555;
+      color: #e8e8e8;
+      background: #1a1a1a;
     }
 
     .mode-chip:hover {
-      border-color: #555;
+      color: #e8e8e8;
     }
 
     .results {
-      margin-top: 8px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 4px;
+      margin-bottom: 24px;
     }
 
     .name-card {
-      background: #1a1a1a;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: 15px;
+      padding: 8px 12px;
+      font-family: 'SF Mono', 'Fira Code', 'Menlo', monospace;
+      font-size: 14px;
       letter-spacing: -0.2px;
-      border: 1px solid #222;
+      color: #e8e8e8;
+      border: none;
+      background: transparent;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.15s;
       cursor: pointer;
+      transition: all 0.1s;
+      border-radius: 0;
     }
 
     .name-card:hover {
-      background: #222;
-      border-color: #444;
+      background: #141414;
     }
 
     .name-card .copy {
-      color: #555;
-      font-size: 13px;
-      font-family: system-ui, sans-serif;
+      color: #333;
+      font-size: 10px;
+      font-family: -apple-system, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       opacity: 0;
-      transition: opacity 0.2s;
+      transition: opacity 0.15s;
     }
 
     .name-card:hover .copy {
@@ -181,29 +170,43 @@
     }
 
     .name-card.copied {
-      border-color: #888;
+      background: #1a1a1a;
     }
 
     .footer {
-      margin-top: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 13px;
-      color: #444;
-      border-top: 1px solid #1a1a1a;
-      padding-top: 18px;
-      flex-wrap: wrap;
-      gap: 12px;
+      font-size: 12px;
+      color: #333;
+      border-top: 1px solid #141414;
+      padding-top: 20px;
+      letter-spacing: 0.3px;
     }
 
     .footer .count {
-      color: #666;
+      color: #444;
     }
 
-    .footer .btn {
-      padding: 8px 16px;
-      font-size: 13px;
+    .footer-actions {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer .btn-text {
+      background: none;
+      border: none;
+      color: #444;
+      font-size: 12px;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      transition: color 0.15s;
+      letter-spacing: 0.3px;
+    }
+
+    .footer .btn-text:hover {
+      color: #e8e8e8;
     }
 
     .toast {
@@ -211,15 +214,17 @@
       bottom: 30px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
-      background: #222;
-      color: #ccc;
-      padding: 10px 24px;
-      border-radius: 30px;
-      font-size: 14px;
-      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #e8e8e8;
+      padding: 6px 18px;
+      font-size: 12px;
+      letter-spacing: 0.3px;
       opacity: 0;
       transition: all 0.3s ease;
       pointer-events: none;
+      border-radius: 0;
+      font-family: inherit;
+      border: 1px solid #2a2a2a;
     }
 
     .toast.show {
@@ -227,25 +232,58 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    @media (max-width: 500px) {
-      .container {
-        padding: 24px 16px;
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
       }
-      .results {
-        grid-template-columns: 1fr;
-      }
+
       .input-group {
         flex-direction: column;
+        gap: 12px;
+        border-bottom: none;
+        padding-bottom: 16px;
       }
+
+      .input-group input {
+        border-bottom: 1px solid #1e1e1e;
+        padding-bottom: 8px;
+        font-size: 16px;
+      }
+
+      .input-group input:focus {
+        border-bottom-color: #555;
+      }
+
       .btn {
         width: 100%;
-        justify-content: center;
-        text-align: center;
+        padding: 10px;
       }
+
+      .results {
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+      }
+
+      .mode-row {
+        gap: 2px;
+        margin-bottom: 20px;
+      }
+
+      .mode-chip {
+        font-size: 10px;
+        padding: 4px 8px;
+      }
+
       .footer {
         flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
+        gap: 12px;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .results {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -253,12 +291,14 @@
 <body>
 
 <div class="container">
-  <h1>⬡ repo · name</h1>
-  <div class="sub">minimal · short · tacky</div>
+  <div class="header">
+    <h1>repo · name</h1>
+    <div class="sub">minimal · short · tacky</div>
+  </div>
 
   <div class="input-group">
     <input type="text" id="keywordInput" placeholder="keyword (e.g. resume, editor, kit)" />
-    <button class="btn btn-primary" id="generateBtn">generate</button>
+    <button class="btn" id="generateBtn">generate</button>
   </div>
 
   <div class="mode-row" id="modeContainer">
@@ -273,9 +313,9 @@
 
   <div class="footer">
     <span class="count" id="countDisplay">0 names</span>
-    <div style="display:flex; gap:8px;">
-      <button class="btn btn-secondary" id="copyAllBtn">copy all</button>
-      <button class="btn btn-secondary" id="refreshBtn">↻ refresh</button>
+    <div class="footer-actions">
+      <button class="btn-text" id="copyAllBtn">copy all</button>
+      <button class="btn-text" id="refreshBtn">refresh</button>
     </div>
   </div>
 </div>
@@ -284,43 +324,155 @@
 
 <script>
   (function() {
-    // ----- name pools --------------------------------------------------
-    const pools = {
-      short: [
-        'cv', 'res', 'dev', 'kit', 'lab', 'box', 'bin', 'src', 'lib',
-        'cfg', 'env', 'sys', 'ops', 'web', 'app', 'api', 'ui', 'ux',
-        'io', 'me', 'pf', 'folio', 'site', 'page', 'space', 'corner',
-        'play', 'craft', 'tiny', 'one', 'lite', 'min', 'pro', 'plus'
-      ],
-      tacky: [
-        'gx', 'sklz', 'xray', 'fitz', 'hr0', 'j0b', 'xbin', 'fx',
-        'zx', 'px', 'vx', 'dotz', 'runz', 'boxz', 'xtra', 'clik',
-        'stax', 'flux', 'grim', 'zeph', 'kodo', 'nyx', 'x0', 'z9',
-        'gr1d', 'n0de', 's1m', 'p0rt', 'k1x', '4x', 'x4', 'pwr'
-      ],
-      action: [
-        'match', 'scan', 'fetch', 'push', 'wrap', 'mix', 'stitch',
-        'weave', 'forge', 'boost', 'refine', 'polish', 'craft', 'hone',
-        'lift', 'tune', 'level', 'run', 'edit', 'type', 'test', 'try',
-        'view', 'track', 'master', 'learn', 'guide', 'study', 'curate'
-      ],
-      noun: [
-        'bits', 'dots', 'spools', 'wires', 'cogs', 'gears', 'pipes',
-        'racks', 'vaults', 'archive', 'warehouse', 'stash', 'junk',
-        'sandbox', 'playground', 'scratch', 'misc', 'trash', 'heap',
-        'pile', 'stack', 'store', 'clips', 'frags', 'chunks', 'blocks',
-        'nuggets', 'crumbs', 'dust', 'sparks', 'echo', 'trace', 'marks',
-        'tags', 'notebook', 'scribble', 'doodle', 'sketch', 'drafts',
-        'backlog', 'random', 'extra', 'overflow', 'spill', 'clutter'
-      ]
-    };
+    // ----- KEYWORD-SPECIFIC NAME GENERATION ---------------------------
+    function generateKeywordNames(keyword, mode, count = 30) {
+      const results = new Set();
+      const kw = keyword.trim().toLowerCase();
 
-    const allNames = [
-      ...pools.short, ...pools.tacky, ...pools.action, ...pools.noun
-    ];
+      // If no keyword, use fallback pools
+      if (!kw) {
+        const fallbackPools = {
+          all: ['kit', 'box', 'lab', 'dev', 'web', 'app', 'api', 'core', 'base', 'hub', 'node', 'space', 'forge', 'craft', 'flow', 'wave', 'mark', 'pad', 'dock', 'port'],
+          short: ['cv', 'res', 'dev', 'kit', 'lab', 'box', 'bin', 'src', 'lib', 'cfg', 'env', 'sys', 'ops', 'web', 'app', 'api', 'ui', 'ux', 'io', 'me', 'pf', 'folio', 'site', 'page', 'space', 'corner', 'play', 'craft', 'tiny', 'one', 'lite', 'min', 'pro', 'plus'],
+          tacky: ['gx', 'sklz', 'xray', 'fitz', 'hr0', 'j0b', 'xbin', 'fx', 'zx', 'px', 'vx', 'dotz', 'runz', 'boxz', 'xtra', 'clik', 'stax', 'flux', 'grim', 'zeph', 'kodo', 'nyx', 'x0', 'z9', 'gr1d', 'n0de', 's1m', 'p0rt', 'k1x', '4x', 'x4', 'pwr'],
+          action: ['match', 'scan', 'fetch', 'push', 'wrap', 'mix', 'stitch', 'weave', 'forge', 'boost', 'refine', 'polish', 'craft', 'hone', 'lift', 'tune', 'level', 'run', 'edit', 'type', 'test', 'try', 'view', 'track', 'master', 'learn', 'guide', 'study', 'curate', 'find', 'spot', 'hunt', 'seek', 'sniff', 'probe', 'parse', 'audit', 'vet', 'scope', 'eval', 'rank', 'score', 'check', 'fit'],
+          noun: ['bits', 'dots', 'spools', 'wires', 'cogs', 'gears', 'pipes', 'racks', 'vaults', 'archive', 'warehouse', 'stash', 'junk', 'sandbox', 'playground', 'scratch', 'misc', 'trash', 'heap', 'pile', 'stack', 'store', 'clips', 'frags', 'chunks', 'blocks', 'nuggets', 'crumbs', 'dust', 'sparks', 'echo', 'trace', 'marks', 'tags', 'notebook', 'scribble', 'doodle', 'sketch', 'drafts', 'backlog', 'random', 'extra', 'overflow', 'spill', 'clutter', 'gap', 'fit', 'scan', 'match']
+        };
+        const pool = mode === 'all' ? fallbackPools.all : (fallbackPools[mode] || fallbackPools.all);
+        const shuffled = shuffleArray([...pool]);
+        return shuffled.slice(0, count);
+      }
 
-    // remove duplicates
-    const uniqueAll = [...new Set(allNames)];
+      // ---- KEYWORD-BASED GENERATION ----
+      const suffixes = ['', 'x', 'z', 'r', 'n', 'a', 'o', 'i', 'e', 'y', 'ly', 'er', 'or', 'ify', 'ize', 'mate', 'cast', 'forge', 'craft', 'flow', 'wave', 'line', 'mark', 'pad', 'dock', 'port', 'hub', 'base', 'node', 'space', 'kit', 'box', 'lab', 'bin', 'pack', 'stack', 'store', 'scan', 'match', 'check', 'find', 'seek', 'probe', 'scope', 'view', 'track', 'guide', 'path', 'map', 'sync', 'link', 'join', 'merge', 'split', 'sort', 'filter', 'parse', 'build', 'deploy', 'run', 'go', 'up', 'init', 'new', 'core', 'pro', 'max', 'ultra', 'nano', 'micro', 'hyper', 'super'];
+      const numbers = ['', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '24', '42', '69', '99', '00'];
+
+      // Build keyword variants
+      const kwVariants = [kw];
+      // Add common variations
+      if (kw.endsWith('er')) kwVariants.push(kw.slice(0, -2));
+      if (kw.endsWith('ing')) kwVariants.push(kw.slice(0, -3));
+      if (kw.endsWith('ify')) kwVariants.push(kw.slice(0, -3));
+      if (kw.endsWith('ation')) kwVariants.push(kw.slice(0, -5));
+      if (kw.endsWith('or')) kwVariants.push(kw.slice(0, -2));
+      // Add prefixes
+      kwVariants.push('x' + kw);
+      kwVariants.push('z' + kw);
+      kwVariants.push(kw.slice(0, 3));
+      kwVariants.push(kw.slice(0, 2));
+
+      // Remove duplicates and empty
+      const uniqueKw = [...new Set(kwVariants)].filter(v => v && v.length > 0);
+
+      // Generate combinations
+      let attempts = 0;
+      const maxAttempts = 2000;
+
+      while (results.size < count && attempts < maxAttempts) {
+        attempts++;
+        const base = getRandomElement(uniqueKw);
+        const suffix = getRandomElement(suffixes);
+        const num = getRandomElement(numbers);
+
+        // Build name variants
+        const variants = [];
+
+        // 1. base + suffix
+        if (suffix) variants.push(base + suffix);
+
+        // 2. base + number
+        if (num) variants.push(base + num);
+
+        // 3. base + suffix + number
+        if (suffix && num) variants.push(base + suffix + num);
+
+        // 4. base only (if reasonable length)
+        if (base.length >= 2 && base.length <= 8) variants.push(base);
+
+        // 5. base + 'x' or 'z' (tacky)
+        if (!suffix || (suffix !== 'x' && suffix !== 'z')) {
+          variants.push(base + 'x');
+          variants.push(base + 'z');
+        }
+
+        // 6. base + 'er' or 'r' (action)
+        if (!base.endsWith('er') && !base.endsWith('r')) {
+          variants.push(base + 'er');
+          variants.push(base + 'r');
+        }
+
+        // 7. Add common prefixes
+        variants.push('x' + base);
+        variants.push('z' + base);
+
+        // 8. Add numbers in middle (tacky)
+        if (base.length > 2) {
+          const mid = Math.floor(base.length / 2);
+          const num2 = getRandomElement(['0', '1', '4', '7', '9']);
+          variants.push(base.slice(0, mid) + num2 + base.slice(mid));
+        }
+
+        // 9. Keyword + common suffixes
+        const commonSuffixes = ['kit', 'box', 'lab', 'bin', 'hub', 'base', 'node', 'space', 'pack', 'stack', 'store', 'scan', 'match', 'check', 'find', 'seek', 'probe', 'scope', 'view', 'track', 'guide', 'path', 'map'];
+        for (const cs of commonSuffixes) {
+          if (!base.endsWith(cs)) {
+            variants.push(base + cs);
+          }
+        }
+
+        // Filter and add
+        for (const name of variants) {
+          if (name && name.length >= 2 && name.length <= 14) {
+            if (/^\d+$/.test(name)) continue;
+            // Skip if it contains only numbers and x/z
+            if (/^[0-9xz]+$/.test(name) && name.length < 3) continue;
+            results.add(name.toLowerCase());
+          }
+        }
+      }
+
+      // If still no results, force fallback
+      if (results.size === 0) {
+        const fallbacks = [
+          kw, kw + 'x', kw + 'z', kw + 'er', kw + 'r',
+          kw + 'kit', kw + 'box', kw + 'lab', kw + 'hub',
+          'x' + kw, 'z' + kw
+        ];
+        for (const fb of fallbacks) {
+          if (fb.length >= 2 && fb.length <= 12) results.add(fb);
+        }
+      }
+
+      // Apply mode filter
+      let finalResults = [...results];
+      if (mode === 'short') {
+        finalResults = finalResults.filter(n => n.length <= 5);
+      } else if (mode === 'tacky') {
+        finalResults = finalResults.filter(n => /[xz]/.test(n) || /\d/.test(n));
+      } else if (mode === 'action') {
+        finalResults = finalResults.filter(n => /(er|r|ify|ize|ate|ing)$/.test(n) || ['match', 'scan', 'fetch', 'push', 'wrap', 'mix', 'stitch', 'weave', 'forge', 'boost', 'refine', 'polish', 'craft', 'hone', 'lift', 'tune', 'level', 'run', 'edit', 'type', 'test', 'try', 'view', 'track', 'master', 'learn', 'guide', 'study', 'curate', 'find', 'spot', 'hunt', 'seek', 'sniff', 'probe', 'parse', 'audit', 'vet', 'scope', 'eval', 'rank', 'score', 'check', 'fit'].some(a => n.includes(a)));
+      } else if (mode === 'noun') {
+        finalResults = finalResults.filter(n => !/(er|r|ify|ize|ate|ing)$/.test(n) || n.length > 4);
+      }
+
+      // If filtered too much, use unfiltered
+      if (finalResults.length < 10) finalResults = [...results];
+
+      return shuffleArray(finalResults).slice(0, count);
+    }
+
+    // ----- helpers ----------------------------------------------------
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function getRandomElement(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
 
     // ----- DOM refs ----------------------------------------------------
     const keywordInput = document.getElementById('keywordInput');
@@ -335,44 +487,11 @@
     let currentMode = 'all';
     let currentNames = [];
 
-    // ----- helpers ----------------------------------------------------
-    function shuffleArray(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
-
-    function getNamesForMode(mode) {
-      if (mode === 'all') return [...uniqueAll];
-      return pools[mode] ? [...pools[mode]] : [];
-    }
-
-    function filterByKeyword(names, keyword) {
-      if (!keyword.trim()) return names;
-      const kw = keyword.trim().toLowerCase();
-      return names.filter(name => name.toLowerCase().includes(kw));
-    }
-
-    function generateNames(mode, keyword) {
-      let base = getNamesForMode(mode);
-      let filtered = filterByKeyword(base, keyword);
-      // if filtered is empty, fallback to all names with keyword
-      if (filtered.length === 0 && keyword.trim()) {
-        filtered = filterByKeyword(uniqueAll, keyword);
-      }
-      // if still empty, return all names
-      if (filtered.length === 0) filtered = [...uniqueAll];
-      // shuffle and take up to 24
-      const shuffled = shuffleArray(filtered);
-      return shuffled.slice(0, 24);
-    }
-
+    // ----- render ----------------------------------------------------
     function render(names) {
       resultsContainer.innerHTML = '';
       if (names.length === 0) {
-        resultsContainer.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#555; padding:24px 0;">no names found</div>';
+        resultsContainer.innerHTML = '<div style="grid-column:1/-1; text-align:center; color:#333; padding:24px 0; font-size:13px;">no names found</div>';
         countDisplay.textContent = '0 names';
         return;
       }
@@ -387,7 +506,6 @@
             showToast(`copied "${name}"`);
             setTimeout(() => card.classList.remove('copied'), 800);
           }).catch(() => {
-            // fallback
             const textarea = document.createElement('textarea');
             textarea.value = name;
             document.body.appendChild(textarea);
@@ -415,7 +533,7 @@
     // ----- main generate ---------------------------------------------
     function generate() {
       const keyword = keywordInput.value;
-      const names = generateNames(currentMode, keyword);
+      const names = generateKeywordNames(keyword, currentMode, 30);
       currentNames = names;
       render(names);
     }
@@ -460,7 +578,6 @@
 
     // ----- init -------------------------------------------------------
     generate();
-
   })();
 </script>
 </body>
